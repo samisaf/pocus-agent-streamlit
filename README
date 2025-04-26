@@ -12,6 +12,7 @@
 Everything lives in a single file (`app.py`) so you can drop five Markdown files beside it and run:
 
 ```bash
-pipenv install streamlit langchain-openai
+pipenv shell
+pipenv install
 streamlit run app.py
 ```
