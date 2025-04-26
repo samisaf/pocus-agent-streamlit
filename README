@@ -1,0 +1,17 @@
+### What this app does  
+
+**Point-of-Care Ultrasound AI Tutor** is a Streamlit web app that pairs short textbook-style chapters (stored as `chapter_1.md … chapter_5.md`) with an embedded LLM-powered tutor.  
+
+* **Welcome screen** – a brief introduction plus a password-type box where the learner pastes their OpenAI API key (stored in `st.session_state`).  
+* **Sidebar navigation** – “Chapter 1” through “Chapter 5”. Selecting a chapter loads its Markdown into the assistant’s system prompt and resets the chat history.  
+* **Chat interface** – built with `st.chat_input` and `st.chat_message`, showing the full back-and-forth. Under the hood it calls the LangChain `ChatOpenAI` wrapper:  
+  1. Your question (`HumanMessage`).  
+  2. The full text of the chosen Markdown file, supplied as context (`SystemMessage`).  
+  3. All previous user turns for the current chapter, so the assistant remembers the thread.  
+
+Everything lives in a single file (`app.py`) so you can drop five Markdown files beside it and run:
+
+```bash
+pipenv install streamlit langchain-openai
+streamlit run app.py
+```
